@@ -62,6 +62,27 @@
   .donts h4 { color:var(--accent); margin-bottom:6px; font-size:14px; }
   .dos ul, .donts ul { padding-left:18px; font-size:13px; color:var(--gray-600); }
   .footer { text-align:center; padding:24px; color:var(--gray-400); font-size:12px; border-top:1px solid var(--gray-200); margin-top:36px; }
+  /* ===== CASE CARDS ===== */
+  .case-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+  .case-card.win{border-top:4px solid var(--success);}
+  .case-card.lose{border-top:4px solid var(--accent);}
+  .case-head { padding:14px 22px; display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px; }
+  .case-card.win .case-head { color:var(--success); background:#f0fff4; }
+  .case-card.lose .case-head { color:var(--accent); background:#fff5f5; }
+  .case-body { padding:18px 22px; flex:1; display:flex; flex-direction:column; }
+  .case-body ul { padding-left:18px; flex:1; }
+  .case-body li { margin-bottom:5px; font-size:13px; }
+  .case-img { cursor:zoom-in; border-radius:6px; border:1px solid var(--gray-200); object-fit:contain; transition:var(--transition); }
+  .case-img:hover { box-shadow:0 4px 16px rgba(0,0,0,.15); transform:scale(1.02); }
+  .case-img-wrap { position:relative; display:inline-block; cursor:zoom-in; }
+  .case-img-wrap::after { content:'🔍 点击放大'; position:absolute; bottom:6px; right:6px; background:rgba(0,0,0,.6); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; pointer-events:none; opacity:0; transition:opacity .2s; }
+  .case-img-wrap:hover::after{opacity:1;}
+  /* ===== LIGHTBOX ===== */
+  .lightbox { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.85); z-index:9999; justify-content:center; align-items:center; cursor:zoom-out; }
+  .lightbox.show{display:flex;}
+  .lightbox img { max-width:92vw; max-height:92vh; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,.5); cursor:default; }
+  .lightbox .lb-close { position:absolute; top:20px; right:30px; font-size:36px; color:#fff; cursor:pointer; z-index:10000; opacity:.7; transition:opacity .2s; line-height:1; }
+  .lightbox .lb-close:hover{opacity:1;}
   @media(max-width:768px){ .hero{padding:32px 18px 24px;} .hero h1{font-size:22px;} .grid-2,.grid-3{grid-template-columns:1fr;} .dos-donts{grid-template-columns:1fr;} }
 </style>
 </head>
@@ -82,7 +103,8 @@
     <a href="#script">四、离职话术</a>
     <a href="#evidence">五、证据与绩效</a>
     <a href="#collab">六、与HRBP协作</a>
-    <a href="#dosdonts">七、行为红线</a>
+    <a href="#cases">七、案例对比</a>
+    <a href="#dosdonts">八、行为红线</a>
   </div>
 </nav>
 
@@ -281,9 +303,51 @@
   </div>
 </section>
 
+<!-- ===== 案例对比 ===== -->
+<section class="section" id="cases">
+  <div class="section-title">⚖ 七、案例对比：做对了什么、做错了什么</div>
+  <p class="section-subtitle">同样的场景，不同的操作，结果天差地别 — 你的每一步动作都算数</p>
+
+  <div class="callout info" style="margin-bottom:16px;"><span class="ci">📋</span><div><strong>案例一背景：</strong>员工张三，试用期3个月，多次未按时完成任务且交付成果错误明显（3次书面指正无改进），3项量化考核均未达标（56分/合格70分），缺少岗位所需协作能力导致两个项目受阻。</div></div>
+
+  <div class="grid-2">
+    <div class="case-card lose">
+      <div class="case-head">❌ 败诉案例 —— 业务管理者错在哪里</div>
+      <div class="case-body">
+        <ul>
+          <li><strong>评语太虚：</strong>"员工态度不好""有待提升"，没有一条量化数据</li>
+          <li><strong>流程倒置：</strong>没做完绩效评定就让员工走了，员工不确认结果</li>
+          <li><strong>未书面告知：</strong>没当面/邮件告知绩效结果及不符合录用的事实</li>
+          <li><strong>无过程管理：</strong>没制定试用期考核计划，没做定期回顾</li>
+        </ul>
+        <div class="callout danger" style="margin-bottom:0;"><span class="ci">⚠</span><div><strong>败诉后果：</strong>仲裁裁定违法解除，赔偿2N — 就因为业务管理者日常没留证据</div></div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+          <div class="case-img-wrap" onclick="openLightbox('图1.png','败诉-图1')" style="flex:1;min-width:130px;"><img src="图1.png" class="case-img" style="width:100%;max-height:260px;"></div>
+          <div class="case-img-wrap" onclick="openLightbox('图2.png','败诉-图2')" style="flex:1;min-width:130px;"><img src="图2.png" class="case-img" style="width:100%;max-height:260px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card win">
+      <div class="case-head">✅ 胜诉案例 —— 业务管理者做对了什么</div>
+      <div class="case-body">
+        <ul>
+          <li><strong>过程管理到位：</strong>每项指标打低分，评语含量化数据（"截至X日XX报告未提交""XX指标仅完成XX%"）</li>
+          <li><strong>得分与评语一致：</strong>1.66分配"低于预期"，逻辑自洽</li>
+          <li><strong>证据先行：</strong>离职面谈时当面告知绩效结果+不符合录用的事实依据，固化证据后才发解除通知</li>
+          <li><strong>全程留痕：</strong>试用期考核计划、定期回顾记录、3次书面指正均有存档</li>
+        </ul>
+        <div class="callout success" style="margin-bottom:0;"><span class="ci">✓</span><div><strong>胜诉关键：</strong>业务管理者日常做对了"量化+留痕+流程"，HRBP就有了打赢仲裁的底气</div></div>
+        <div style="margin-top:10px;"><div class="case-img-wrap" onclick="openLightbox('图3.png','胜诉-图3')"><img src="图3.png" class="case-img" style="width:100%;max-height:260px;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin-top:16px;"><span class="ci">💡</span><div><strong>给你的一句话总结：</strong>你不是HR，但你每天都在决定公司打官司时能不能赢。绩效评语里多写一句量化数据，仲裁时就多一分胜算。</div></div>
+</section>
+
 <!-- ===== 行为红线 ===== -->
 <section class="section" id="dosdonts">
-  <div class="section-title">🚫 七、行为红线：绝对不要做</div>
+  <div class="section-title">🚫 八、行为红线：绝对不要做</div>
   <div class="card" style="border-left:4px solid var(--accent);">
     <ol style="font-size:14px;color:var(--gray-700);padding-left:20px;">
       <li style="margin-bottom:8px;"><strong>不要口头承诺补偿金额。</strong>所有补偿条件由 HRBP 统一口径，你说"按公司政策"即可。</li>
@@ -305,6 +369,12 @@
 
 <script>
 document.querySelectorAll('.nav a').forEach(l=>{l.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));this.classList.add('active');});});
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('show');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('show');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 </script>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><span class="lb-close">&times;</span><img src="" id="lightbox-img"></div>
+
 </body>
 </html>
