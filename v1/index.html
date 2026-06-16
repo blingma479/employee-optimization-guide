@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国内员工优化指南（培训版）</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --primary-light: #2c5282;
+    --accent: #e53e3e;
+    --accent-light: #fc8181;
+    --warning: #dd6b20;
+    --warning-light: #fbd38d;
+    --success: #276749;
+    --success-light: #c6f6d5;
+    --info: #2b6cb0;
+    --info-light: #bee3f8;
+    --gray-50: #f7fafc;
+    --gray-100: #edf2f7;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e0;
+    --gray-400: #a0aec0;
+    --gray-600: #4a5568;
+    --gray-700: #2d3748;
+    --gray-800: #1a202c;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --transition: all 0.25s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f0f4f8;
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d1b2a 60%, #1b2838 100%);
+    color: var(--white);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40%; left: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(229,62,62,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(229,62,62,0.2);
+    color: var(--accent-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== NAV ===== */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a {
+    flex-shrink: 0;
+    padding: 14px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .nav a:hover, .nav a.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--gray-50);
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    margin-bottom: 50px;
+  }
+  .section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    width: 38px; height: 38px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .section-subtitle {
+    color: var(--gray-400);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-200);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--gray-800);
+  }
+
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ===== STATS ===== */
+  .stat-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
+  }
+  .stat-box .num {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .stat-box .label {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-top: 6px;
+  }
+
+  /* ===== TYPE CARDS ===== */
+  .type-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+  }
+  .type-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .type-card-head {
+    padding: 20px 24px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .type-card-head .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.25);
+  }
+  .type-card-body {
+    padding: 20px 24px;
+  }
+  .type-card-body .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 14px;
+  }
+  .type-card-body .row:last-child { border: none; }
+  .type-card-body .row .k { color: var(--gray-400); }
+  .type-card-body .row .v { font-weight: 600; color: var(--gray-800); }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .compare-table th {
+    background: var(--primary);
+    color: var(--white);
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--gray-50); }
+  .compare-table tr:hover td { background: #ebf4ff; }
+
+  /* ===== COST BADGES ===== */
+  .cost-yes {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 3px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .cost-no {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 3px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ===== FLOW STEPS ===== */
+  .flow-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .flow-step {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    position: relative;
+    padding: 0 8px;
+  }
+  .flow-step::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 28px;
+    font-size: 20px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .flow-step:last-child::after { display: none; }
+  .flow-step .circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 auto 8px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .flow-step .desc {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.4;
+  }
+
+  /* ===== PROCESS TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gray-200);
+    border-radius: 2px;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .tl-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 4px;
+  }
+  .tl-item p {
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+
+  /* ===== CASE CARDS ===== */
+  .case-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .case-card .case-body { flex: 1; display: flex; flex-direction: column; }
+  .case-card .case-body ul { flex: 1; }
+  .case-card.win { border-top: 4px solid var(--success); }
+  .case-card.lose { border-top: 4px solid var(--accent); }
+  .case-head {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .case-card.win .case-head { color: var(--success); background: #f0fff4; }
+  .case-card.lose .case-head { color: var(--accent); background: #fff5f5; }
+  .case-body { padding: 20px 24px; }
+  .case-body ul { padding-left: 20px; }
+  .case-body li { margin-bottom: 6px; font-size: 14px; }
+
+  /* ===== CLICKABLE CASE IMAGES ===== */
+  .case-img {
+    cursor: zoom-in;
+    border-radius: 6px;
+    border: 1px solid var(--gray-200);
+    object-fit: contain;
+    transition: var(--transition);
+  }
+  .case-img:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: scale(1.02);
+  }
+  .case-img-wrap {
+    position: relative;
+    display: inline-block;
+    cursor: zoom-in;
+  }
+  .case-img-wrap::after {
+    content: '🔍 点击放大';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .case-img-wrap:hover::after { opacity: 1; }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+  }
+  .lightbox.show { display: flex; }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    cursor: default;
+  }
+  .lightbox .lb-close {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 36px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10000;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    line-height: 1;
+  }
+  .lightbox .lb-close:hover { opacity: 1; }
+  .lightbox .lb-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+  }
+
+  /* ===== ACCORDION ===== */
+  .accordion {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    margin-bottom: 12px;
+  }
+  .accordion-header {
+    padding: 16px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-800);
+    transition: var(--transition);
+    user-select: none;
+  }
+  .accordion-header:hover { background: var(--gray-50); }
+  .accordion-header .arrow {
+    transition: transform 0.3s;
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+  .accordion.open .accordion-header .arrow { transform: rotate(180deg); }
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+  .accordion.open .accordion-body {
+    max-height: 3000px;
+    padding: 0 24px 20px;
+  }
+
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--gray-200);
+    margin-bottom: 20px;
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: var(--transition);
+  }
+  .tab-btn:hover { color: var(--gray-700); }
+  .tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ===== COLLABORATION MATRIX ===== */
+  .collab-matrix {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .collab-matrix > * {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+  .collab-matrix .cm-head {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    text-align: center;
+  }
+  .collab-matrix .cm-stage {
+    background: var(--gray-100);
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .collab-matrix .cm-hrbp {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .collab-matrix .cm-biz {
+    background: #f8fafd;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    border-radius: var(--radius);
+    padding: 16px 22px;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .callout.warn {
+    background: #fffaf0;
+    border-left: 4px solid var(--warning);
+    color: #7b341e;
+  }
+  .callout.info {
+    background: #ebf8ff;
+    border-left: 4px solid var(--info);
+    color: #1a365d;
+  }
+  .callout.success {
+    background: #f0fff4;
+    border-left: 4px solid var(--success);
+    color: #22543d;
+  }
+  .callout.danger {
+    background: #fff5f5;
+    border-left: 4px solid var(--accent);
+    color: #742a2a;
+  }
+  .callout .ci { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ===== FAQ ===== */
+  .faq-q {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 20px 0 6px;
+    font-size: 15px;
+  }
+  .faq-a {
+    color: var(--gray-600);
+    font-size: 14px;
+    padding-left: 16px;
+    border-left: 3px solid var(--gray-200);
+    margin-bottom: 16px;
+  }
+
+  /* ===== TAG ===== */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag-red { background: #fff5f5; color: var(--accent); }
+  .tag-green { background: #f0fff4; color: var(--success); }
+  .tag-orange { background: #fffaf0; color: var(--warning); }
+  .tag-blue { background: #ebf8ff; color: var(--info); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--gray-400);
+    font-size: 13px;
+    border-top: 1px solid var(--gray-200);
+    margin-top: 40px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero { padding: 40px 20px 30px; }
+    .hero h1 { font-size: 24px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .collab-matrix { grid-template-columns: 80px 1fr 1fr; font-size: 12px; }
+    .flow-steps { flex-direction: column; align-items: center; }
+    .flow-step::after { content: '↓'; right: auto; bottom: -18px; top: auto; }
+    .compare-table { font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 8px 10px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white; }
+    .nav-wrap { display: none; }
+    .accordion-body { max-height: none !important; padding: 0 24px 20px !important; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-badge">CONFIDENTIAL · 仅限内部传阅</div>
+  <h1>国内员工优化指南</h1>
+  <p class="subtitle">面向 HRBP 与业务管理者的标准化操作手册 —— 规范流程、降低风险、促成人性化离职</p>
+</header>
+
+<!-- ==================== STICKY NAV ==================== -->
+<nav class="nav-wrap">
+  <div class="nav">
+    <a href="#overview" class="active">一、概览</a>
+    <a href="#comparison">二、五大类型对比</a>
+    <a href="#type1">三、类型详解</a>
+    <a href="#cases">四、案例分析</a>
+    <a href="#collaboration">五、HRBP×业务协作</a>
+    <a href="#performance">六、绩效评语</a>
+    <a href="#script">七、离职话术</a>
+    <a href="#faq">八、常见问题</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ==================== SECTION: 概览 ==================== -->
+<section class="section" id="overview">
+  <div class="section-title">
+    <span class="icon" style="background:#ebf8ff;color:var(--primary)">◉</span>
+    背景与价值
+  </div>
+  <p class="section-subtitle">理解"为什么需要这份指南"</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">📌 业务背景</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px;">
+        基于业务不断变化和战略调整，部门面临组织结构优化、业务重组或成本控制等挑战，因此需要进行人员调整。
+      </p>
+      <div class="callout danger">
+        <span class="ci">⚠</span>
+        <div>
+          <strong>当前突出问题：</strong><br>
+          ① 解除员工缺乏证据支撑，仲裁败诉风险高<br>
+          ② "给钱就走"的不良风气蔓延，推高优化成本
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">🎯 指南核心价值</div>
+      <div style="display:grid;gap:12px;">
+        <div>
+          <span class="tag tag-blue">规范职责</span>
+          <span style="font-size:14px;color:var(--gray-600);">通过指南规范部门管理职责，明确 HRBP 与业务的角色分工</span>
+        </div>
+        <div>
+          <span class="tag tag-green">建设氛围</span>
+          <span style="font-size:14px;color:var(--gray-600);">倡导良好的"优化"氛围，从"给钱就走"到"依规处理"</span>
+        </div>
+        <div>
+          <span class="tag tag-orange">统一动作</span>
+          <span style="font-size:14px;color:var(--gray-600);">规范优化流程，确保辞退过程合法合规</span>
+        </div>
+        <div>
+          <span class="tag tag-red">降低成本</span>
+          <span style="font-size:14px;color:var(--gray-600);">提高仲裁案件胜诉率，降低赔付成本</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-top:24px;">
+    <div class="stat-box">
+      <div class="num">5</div>
+      <div class="label">大优化类型</div>
+    </div>
+    <div class="stat-box" style="border-left-color:var(--success);">
+      <div class="num" style="color:var(--success);">2</div>
+      <div class="label">类无需补偿</div>
+    </div>
+    <div class="stat-box" style="border-left-color:var(--accent);">
+      <div class="num" style="color:var(--accent);">3</div>
+      <div class="label">类需支付补偿</div>
+    </div>
+    <div class="stat-box" style="border-left-color:var(--warning);">
+      <div class="num" style="color:var(--warning);">2N</div>
+      <div class="label">违法解除最高赔偿</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: 五大类型对比 ==================== -->
+<section class="section" id="comparison">
+  <div class="section-title">
+    <span class="icon" style="background:#f0fff4;color:var(--success)">≡</span>
+    五大优化类型速览对比
+  </div>
+  <p class="section-subtitle">一表看清五种场景的法律依据、成本、补偿及关键差异</p>
+
+  <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width:8%;">序号</th>
+          <th style="width:18%;">优化类型</th>
+          <th style="width:17%;">法律依据</th>
+          <th style="width:10%;">是否产生成本</th>
+          <th style="width:15%;">法定补偿</th>
+          <th style="width:15%;">人性化方案</th>
+          <th style="width:17%;">制度化方案</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>①</strong></td>
+          <td><strong>试用期不符合录用条件</strong></td>
+          <td>劳动法第39条(一)</td>
+          <td><span class="cost-no">否</span></td>
+          <td>不产生成本；若无绩效支撑最高2N</td>
+          <td>协商引导主动离职</td>
+          <td>SSC发送解除通知</td>
+        </tr>
+        <tr>
+          <td><strong>②</strong></td>
+          <td><strong>不能胜任工作</strong></td>
+          <td>劳动法第40条(二)</td>
+          <td><span class="cost-yes">是</span></td>
+          <td>合法：N+1；违法：2N</td>
+          <td>补偿1-2月薪资，不超N</td>
+          <td>调岗→培训→严考核→降薪→解除</td>
+        </tr>
+        <tr>
+          <td><strong>③</strong></td>
+          <td><strong>严重违反规章制度</strong></td>
+          <td>劳动法第39条(二)</td>
+          <td><span class="cost-no">否</span></td>
+          <td>一般不产生；最高2N</td>
+          <td>协商引导主动离职</td>
+          <td>SSC发送解除通知</td>
+        </tr>
+        <tr>
+          <td><strong>④</strong></td>
+          <td><strong>劳动合同期满</strong></td>
+          <td>劳动法第44条(一)</td>
+          <td><span class="cost-yes">是</span></td>
+          <td>最高N</td>
+          <td>补偿不超N</td>
+          <td>SSC发送终止通知</td>
+        </tr>
+        <tr>
+          <td><strong>⑤</strong></td>
+          <td><strong>业务调整缩编</strong></td>
+          <td>—</td>
+          <td><span class="cost-yes">是</span></td>
+          <td>最高2N</td>
+          <td>补偿不超N+1（固定薪资）</td>
+          <td>SSC发送解除通知</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== SECTION: 类型详解 ==================== -->
+<section class="section" id="type1">
+  <div class="section-title">
+    <span class="icon" style="background:#fff5f5;color:var(--accent)">☰</span>
+    五大类型详细操作指南
+  </div>
+  <p class="section-subtitle">点击展开查看各类型的法律依据、解除条件、操作流程及 HRBP 与业务的协作要点</p>
+
+  <!-- TYPE 1 -->
+  <div class="accordion open" id="acc-type1">
+    <div class="accordion-header" onclick="toggleAccordion('acc-type1')">
+      <span><span class="tag tag-red" style="margin-right:8px;">类型①</span> 试用期间被证明不符合录用条件 —— <span class="cost-no" style="margin-left:6px;">无成本</span></span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout info">
+        <span class="ci">📖</span>
+        <div><strong>法律依据：</strong>《劳动法》第三十九条（一）在试用期间被证明不符合录用条件的</div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h4 style="margin-bottom:8px;color:var(--gray-800);">常见诱因</h4>
+          <ul style="padding-left:20px;font-size:14px;color:var(--gray-600);">
+            <li>工作表现不符合预期，实际成果与岗位要求差距大</li>
+            <li>缺乏必要的技能或资格（专业技能、证书、经验）</li>
+            <li>工作态度问题：频繁迟到、早退、无故缺勤等</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:8px;color:var(--gray-800);">解除必要条件（满足其一即可）</h4>
+          <ul style="padding-left:20px;font-size:14px;color:var(--gray-600);">
+            <li>试用期任意月绩效考核为"符合预期-"及以下</li>
+            <li>不符合岗位要求或招聘平台要求的条件</li>
+            <li>身份/学历/经历等材料存在虚假、伪造</li>
+            <li>试用期缺勤累计超5天或超3次</li>
+            <li>严重违反公司规章制度或工作流程</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">🔀 优化方案对比</div>
+        <div class="grid-2">
+          <div style="border-right:1px solid var(--gray-200);padding-right:20px;">
+            <span class="tag tag-green" style="margin-bottom:8px;">人性化方案</span>
+            <p style="font-size:14px;color:var(--gray-600);margin-top:8px;">
+              本着"好聚好散"原则，协商一致，引导员工签订《主动离职申请单》
+            </p>
+          </div>
+          <div style="padding-left:20px;">
+            <span class="tag tag-red" style="margin-bottom:8px;">制度化方案</span>
+            <p style="font-size:14px;color:var(--gray-600);margin-top:8px;">
+              无法协商一致时，由 SSC 发送《解除劳动合同通知书》
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h4 style="margin:16px 0 10px;color:var(--gray-800);">HRBP 标准操作流</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="circle">制定考核<br>计划</div>
+          <div class="desc">提醒部门输出试用期考核计划，纳入绩效考核</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--warning);">评定绩效<br>结果</div>
+          <div class="desc">逐项打低分，评语含量化数据，得分与结果匹配</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--success);">协商离职<br>面谈</div>
+          <div class="desc">基于绩效结果/试用期表现引导主动离职</div>
+        </div>
+      </div>
+
+      <div class="callout warn" style="margin-top:16px;">
+        <span class="ci">💡</span>
+        <div>
+          <strong>业务部门协作要点：</strong><br>
+          ① 入职时与员工共同圈定试用期考核目标，双方签字确认<br>
+          ② 月度绩效考核中客观评分，提供具体量化数据和事实依据<br>
+          ③ 安排带教导师，记录辅导过程（作为"已提供支持"的证据）<br>
+          ④ 发现员工不胜任迹象时及时与 HRBP 同步，不要等到试用期快结束
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 2 -->
+  <div class="accordion" id="acc-type2">
+    <div class="accordion-header" onclick="toggleAccordion('acc-type2')">
+      <span><span class="tag tag-orange" style="margin-right:8px;">类型②</span> 不能胜任工作 —— <span class="cost-yes" style="margin-left:6px;">有成本</span></span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout info">
+        <span class="ci">📖</span>
+        <div><strong>法律依据：</strong>《劳动法》第四十条（二）劳动者不能胜任工作，经过培训或者调整工作岗位，仍不能胜任工作的</div>
+      </div>
+
+      <div class="callout danger">
+        <span class="ci">⚠</span>
+        <div><strong>关键提示：</strong>此类型必须同时满足三个条件才能合法解除，缺一不可！</div>
+      </div>
+
+      <h4 style="margin-bottom:8px;color:var(--gray-800);">解除必要条件（三个条件须同时满足）</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="circle" style="background:var(--accent);">条件一<br>绩效触发</div>
+          <div class="desc">1次"远低于预期"<br>或 12个月内累计2次"低于预期"及以下</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--warning);">条件二<br>培训/调岗</div>
+          <div class="desc">安排培训或调整岗位<br>公司有权降低绩效工资</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--accent);">条件三<br>再次绩效</div>
+          <div class="desc">培训/调岗后6个月内<br>绩效再次"低于预期"</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-header"><span class="tag tag-green">人性化方案</span></div>
+          <p style="font-size:14px;color:var(--gray-600);">优先引导签订《主动离职申请单》<br>底线：补偿1-2月固定薪资<br>最高不超过N（固定薪资）</p>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="tag tag-red">制度化方案</span></div>
+          <p style="font-size:14px;color:var(--gray-600);">调岗/培训 → 严绩效考核 → 降薪 → SSC发送解除通知</p>
+        </div>
+      </div>
+
+      <h4 style="margin:16px 0 10px;color:var(--gray-800);">HRBP 标准操作流</h4>
+      <div class="timeline">
+        <div class="tl-item">
+          <h4>① 优化前风险预警</h4>
+          <p>对"符合预期-"员工标记为"高风险人员"，与部门确认是否纳入绩效改进计划</p>
+        </div>
+        <div class="tl-item">
+          <h4>② 制定绩效改进计划（PIP）</h4>
+          <p>提醒部门设定明确改进目标，每项指标量化，评语需包含具体数据</p>
+        </div>
+        <div class="tl-item">
+          <h4>③ 调岗或培训</h4>
+          <p>部门内部调整岗位，或组织正式培训（需留存签到、拍照、反馈记录）</p>
+        </div>
+        <div class="tl-item">
+          <h4>④ 收集不胜任证据</h4>
+          <p>客户投诉（飞书/微信截图）、工作未完成（任务截图）、重大失误（量化损失）</p>
+        </div>
+        <div class="tl-item">
+          <h4>⑤ 发送降薪邮件（按需）</h4>
+          <p>根据绩效结果降低员工薪资</p>
+        </div>
+        <div class="tl-item">
+          <h4>⑥ 协商离职面谈</h4>
+          <p>基于"不能胜任工作"的事实依据引导员工主动离职</p>
+        </div>
+      </div>
+
+      <div class="callout warn" style="margin-top:16px;">
+        <span class="ci">💡</span>
+        <div>
+          <strong>业务部门协作要点：</strong><br>
+          ① 客观评价绩效考核，不可因人情打"过得去"的分数<br>
+          ② PIP 期间加强监督与辅导，同时记录所有辅导动作<br>
+          ③ 调岗/培训后重新设定考核标准，让员工签字确认<br>
+          ④ 优先在部门内调岗，给员工最后一次机会<br>
+          ⑤ 所有沟通保留书面记录（邮件、飞书消息）
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 3 -->
+  <div class="accordion" id="acc-type3">
+    <div class="accordion-header" onclick="toggleAccordion('acc-type3')">
+      <span><span class="tag tag-red" style="margin-right:8px;">类型③</span> 严重违反用人单位规章制度 —— <span class="cost-no" style="margin-left:6px;">无成本</span></span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout info">
+        <span class="ci">📖</span>
+        <div><strong>法律依据：</strong>《劳动法》第三十九条（二）严重违反用人单位的规章制度的</div>
+      </div>
+
+      <h4 style="margin-bottom:8px;color:var(--gray-800);">常见违规情形（满足其一即可启动优化）</h4>
+      <div class="grid-3">
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>考勤类：</strong>连续旷工3天+ / 虚假打卡 / 代打卡 / 违规外勤打卡
+        </div>
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>行为类：</strong>暴力、恐吓、侮辱、诽谤、性骚扰 / 聚众闹事打架斗殴
+        </div>
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>合规类：</strong>虚假发票报销 / 泄露薪酬 / 散播谣言 / 弄虚作假规避制度
+        </div>
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>利益冲突类：</strong>同时与其他单位建立劳动关系 / 亲属关系隐瞒未申报
+        </div>
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>累积处罚类：</strong>一年内2次记大过+ / 3次通报批评 / 4次警告 / 5次口头批评
+        </div>
+        <div style="background:#fff5f5;padding:12px;border-radius:6px;font-size:13px;border-left:3px solid var(--accent);">
+          <strong>其他类：</strong>被依法追究刑事责任的 / 侵占盗窃公司财物1000元+
+        </div>
+      </div>
+
+      <h4 style="margin:16px 0 10px;color:var(--gray-800);">HRBP 标准操作流</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="circle">评定绩效<br>结果</div>
+          <div class="desc">月度绩效逐项打低分，量化评语支撑</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--accent);">收集违规<br>证据</div>
+          <div class="desc">考勤记录/监控/飞书微信截图/录音/书面证明</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--warning);">发送处罚<br>邮件</div>
+          <div class="desc">口头批评→警告→通报批评→记过→记大过→降职→辞退</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--success);">协商离职<br>面谈</div>
+          <div class="desc">基于违规事实引导员工主动离职</div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="ci">💡</span>
+        <div>
+          <strong>业务部门协作要点：</strong><br>
+          ① 发现违规行为第一时间正面告知员工，明确要求和处理方式<br>
+          ② 建立团队内部监督机制，及时上报异常行为<br>
+          ③ 配合 HRBP 收集和固化违规证据（截图、录音、书面材料）<br>
+          ④ 发送处罚邮件时抄送 HRBP，确保处罚链条完整可追溯
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 4 -->
+  <div class="accordion" id="acc-type4">
+    <div class="accordion-header" onclick="toggleAccordion('acc-type4')">
+      <span><span class="tag tag-blue" style="margin-right:8px;">类型④</span> 劳动合同期满 —— <span class="cost-yes" style="margin-left:6px;">有成本</span></span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout info">
+        <span class="ci">📖</span>
+        <div><strong>法律依据：</strong>《劳动法》第四十四条（一）劳动合同期满的</div>
+      </div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">
+        此类型最为简单直接 —— 合同自然到期，但同样需要规范的流程和充分的提前沟通。
+      </p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="circle">确定是否<br>续签</div>
+          <div class="desc">按员工职级<br>与部门负责人确认</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--warning);">提前通知<br>员工</div>
+          <div class="desc">提前1个月<br>通知合同终止</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--success);">协商离职<br>面谈</div>
+          <div class="desc">基于合同终止<br>引导主动离职</div>
+        </div>
+      </div>
+
+      <div class="callout success" style="margin-top:16px;">
+        <span class="ci">💡</span>
+        <div>
+          <strong>业务部门协作要点：</strong><br>
+          ① 提前2-3个月盘点团队人员合同到期情况，与 HRBP 同步<br>
+          ② 评估员工价值，做出是否续签的明确判断（避免犹豫不决）<br>
+          ③ 如决定不续签，协助 HRBP 做好工作交接方案
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 5 -->
+  <div class="accordion" id="acc-type5">
+    <div class="accordion-header" onclick="toggleAccordion('acc-type5')">
+      <span><span class="tag tag-orange" style="margin-right:8px;">类型⑤</span> 业务调整缩编 —— <span class="cost-yes" style="margin-left:6px;">有成本</span></span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout danger">
+        <span class="ci">⚠</span>
+        <div><strong>关键提示：</strong>此类型非员工本人原因，属于公司经营需要。需详细业务调整文件说明（公告、飞书通知、一对一沟通记录），否则面临 2N 赔偿风险！</div>
+      </div>
+
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">
+        常见诱因：业务调整、缩减编制，属于公司经营决策层面的变动。
+      </p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="circle">梳理编制<br>调整计划</div>
+          <div class="desc">与部门共同梳理<br>编制调整方案</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--warning);">确定优化<br>名单</div>
+          <div class="desc">测算补偿成本<br>明确优化人选</div>
+        </div>
+        <div class="flow-step">
+          <div class="circle" style="background:var(--success);">协商离职<br>面谈</div>
+          <div class="desc">基于业务调整<br>引导主动离职</div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="ci">💡</span>
+        <div>
+          <strong>业务部门协作要点：</strong><br>
+          ① 输出正式的编制调整与业务重组文件（作为解除依据）<br>
+          ② 与 HRBP 联合进行一对一沟通，统一口径<br>
+          ③ 优先内部转岗消化，减少直接优化的影响面<br>
+          ④ 补偿预算需提前报批，不要在面谈时临时改价
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: 案例分析 ==================== -->
+<section class="section" id="cases">
+  <div class="section-title">
+    <span class="icon" style="background:#fffaf0;color:var(--warning)">⚖</span>
+    案例对比分析
+  </div>
+  <p class="section-subtitle">胜诉与败诉的核心差异 —— 证据、流程、量化</p>
+
+  <!-- CASE 1 -->
+  <h4 style="margin-bottom:12px;color:var(--gray-800);">
+    <span class="tag tag-red" style="margin-right:6px;">案例一</span> 试用期不符合录用条件
+  </h4>
+  <div class="card" style="margin-bottom:16px;">
+    <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px;">
+      <strong>员工张三，入职试用期3个月：</strong>多次未按时完成任务且交付成果错误明显（3次书面指正无改进）；3项量化考核均未达标（56分/合格70分）；缺少岗位所需沟通协作能力，导致两个项目进度受阻、项目组负面评价。
+    </p>
+    <p style="font-size:14px;color:var(--success);font-weight:600;">→ 符合优化类型：① 试用期不符合录用条件</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="case-card lose">
+      <div class="case-head">❌ 败诉案例教训</div>
+      <div class="case-body">
+        <ul>
+          <li>绩效评语缺乏量化数据，主观描述居多（如"态度不好"）</li>
+          <li>未在员工离职前完成绩效评定，员工无法确认结果</li>
+          <li>缺少书面告知环节 —— 未当面/邮件告知绩效结果及不符合录用的事实依据</li>
+          <li>过程管理缺失：无试用期考核计划、无定期回顾记录</li>
+        </ul>
+        <div class="callout danger" style="margin-top:12px;margin-bottom:0;">
+          <span class="ci">⚠</span>
+          <div><strong>败诉后果：</strong>仲裁裁定违法解除，赔偿2N</div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
+          <div class="case-img-wrap" onclick="openLightbox('图1.png','败诉案例 — 图1')" style="flex:1;min-width:180px;">
+            <img src="图1.png" alt="败诉案例图1" class="case-img" style="width:100%;max-height:340px;">
+          </div>
+          <div class="case-img-wrap" onclick="openLightbox('图2.png','败诉案例 — 图2')" style="flex:1;min-width:180px;">
+            <img src="图2.png" alt="败诉案例图2" class="case-img" style="width:100%;max-height:340px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card win">
+      <div class="case-head">✅ 胜诉关键动作</div>
+      <div class="case-body">
+        <ul>
+          <li><strong>过程管理到位：</strong>每一项指标打低分，绩效评语含具体量化数据</li>
+          <li><strong>得分与结果匹配：</strong>最终得分1.66与"低于预期"结果一致，逻辑自洽</li>
+          <li><strong>固化证据在先：</strong>离职面谈时当面/邮件告知绩效结果 + 不符合录用的事实依据</li>
+          <li><strong>流程合规：</strong>先固化证据，再发送解除通知 —— 顺序不可颠倒</li>
+        </ul>
+        <div class="callout success" style="margin-top:12px;margin-bottom:0;">
+          <span class="ci">✓</span>
+          <div><strong>胜诉核心：</strong>量化+流程+证据链完整</div>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="case-img-wrap" onclick="openLightbox('图3.png','胜诉案例 — 图3')">
+            <img src="图3.png" alt="胜诉案例图3" class="case-img" style="width:100%;max-height:340px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 2 -->
+  <h4 style="margin:28px 0 12px;color:var(--gray-800);">
+    <span class="tag tag-orange" style="margin-right:6px;">案例二</span> 不能胜任工作
+  </h4>
+  <div class="card">
+    <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px;">
+      <strong>员工李四，入职1年：</strong>岗位无变动但无法胜任，频繁延期交付且质量差；部门制定了绩效改进计划（PIP）后仍不能胜任；横向对比薪资较高、性价比低。
+    </p>
+    <p style="font-size:14px;color:var(--warning);font-weight:600;">→ 符合优化类型：② 不能胜任工作</p>
+
+    <h4 style="margin-top:20px;margin-bottom:10px;color:var(--gray-800);">推荐操作路径</h4>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>第一步：绩效评定触发</h4>
+        <p>跟进部门最近一个月绩效评定为"远低于预期"（满足条件一）</p>
+      </div>
+      <div class="tl-item">
+        <h4>第二步：发起调岗</h4>
+        <p>在EHR系统发起调动流程，调整岗位职责或调岗；若员工未报到则发送《催岗通知书》</p>
+      </div>
+      <div class="tl-item">
+        <h4>第三步：组织现场培训</h4>
+        <p><strong>这是收集证据的核心环节：</strong>主题为"XXX岗位胜任力培训"，会议室/线上（录屏），3-5人参与，3-5个培训维度，签到文件、现场拍照、培训后反馈感悟，会议中重申绩效考核标准</p>
+      </div>
+      <div class="tl-item">
+        <h4>第四步：再次评定绩效</h4>
+        <p>调岗/培训后最近一个月绩效评定为"低于预期"（满足条件三）</p>
+      </div>
+      <div class="tl-item">
+        <h4>第五步：协商离职</h4>
+        <p>基于完整的"三条件"证据链，引导员工主动离职</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: HRBP×业务协作 ==================== -->
+<section class="section" id="collaboration">
+  <div class="section-title">
+    <span class="icon" style="background:#ebf8ff;color:var(--info)">🤝</span>
+    HRBP × 业务部门协作模型
+  </div>
+  <p class="section-subtitle">明确角色定位，实现高效协同 —— 业务是主体责任方，HRBP 是专业支持方</p>
+
+  <div class="grid-2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-header" style="color:var(--info);">🏢 业务部门角色</div>
+      <p style="font-size:14px;color:var(--gray-600);">
+        员工关系的<strong>直接责任主体</strong>，对员工日常工作体验起决定性作用。负责目标设定、绩效评定、日常管理、过程证据收集、离职面谈首次沟通。
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-header" style="color:var(--primary);">📋 HRBP 角色</div>
+      <p style="font-size:14px;color:var(--gray-600);">
+        员工关系体系的<strong>构建者与专业支持者</strong>，负责提供危机救援路径和工具、法律风险把控、流程指导、协商谈判介入、与 SSC 对接。
+      </p>
+    </div>
+  </div>
+
+  <!-- 协作矩阵 -->
+  <h4 style="margin:20px 0 12px;color:var(--gray-800);">全生命周期协作矩阵</h4>
+  <div class="collab-matrix">
+    <div class="cm-head">阶段</div>
+    <div class="cm-head">HRBP 职责</div>
+    <div class="cm-head">业务部门职责</div>
+
+    <div class="cm-stage">入职前</div>
+    <div class="cm-hrbp">
+      • 学信网验证学历<br>
+      • 调取任职资格资料<br>
+      • 查看社保缴纳记录<br>
+      • 对有疑问者增加背调<br>
+      • 对风险性资料给出专业意见
+    </div>
+    <div class="cm-biz">
+      • 精准描绘用人画像<br>
+      • 明确岗位说明书<br>
+      • 按需设计测试题目<br>
+      • 发现问题及时与招聘HR沟通
+    </div>
+
+    <div class="cm-stage">试用期</div>
+    <div class="cm-hrbp">
+      • 组织签订协议（合同+手册+考核确认书）<br>
+      • 开展新员工入职培训<br>
+      • 动态关注员工思想与生活<br>
+      • 组织试用期转正评估
+    </div>
+    <div class="cm-biz">
+      • 圈定试用期考核目标（双方确认）<br>
+      • 安排带教导师<br>
+      • 通过正式/非正式沟通关注员工<br>
+      • 客观进行转正评估<br>
+      • 对不胜任者制定PIP
+    </div>
+
+    <div class="cm-stage">转正后</div>
+    <div class="cm-hrbp">
+      • 定期人才盘点<br>
+      • 政策宣导与答疑<br>
+      • 文化建设增加归属感<br>
+      • 高风险人员预警
+    </div>
+    <div class="cm-biz">
+      • 明确阶段性目标与能力短板<br>
+      • 制定月度绩效考核目标<br>
+      • 交付未达预期时及时辅导<br>
+      • 优先调岗消化<br>
+      • 收集岗位证据
+    </div>
+
+    <div class="cm-stage">优化执行</div>
+    <div class="cm-hrbp">
+      • 法律风险评估<br>
+      • 补偿测算<br>
+      • 协商谈判介入<br>
+      • 与SSC对接发送法律文书<br>
+      • 仲裁应对
+    </div>
+    <div class="cm-biz">
+      • 首次离职沟通（按话术指引）<br>
+      • 提供绩效/违规证据<br>
+      • 工作交接安排<br>
+      • 团队情绪管理
+    </div>
+  </div>
+
+  <div class="callout info" style="margin-top:20px;">
+    <span class="ci">🔑</span>
+    <div>
+      <strong>协作黄金法则：</strong><br>
+      ① <strong>信息同步：</strong>双方定期同步员工风险信息，绝不能"突然袭击"<br>
+      ② <strong>统一口径：</strong>面谈前 HRBP 与业务管理者对齐话术，避免信息不一致<br>
+      ③ <strong>证据共建：</strong>业务负责日常证据沉淀，HRBP 负责证据链的法律有效性审核<br>
+      ④ <strong>角色互补：</strong>业务"唱白脸"（谈业务表现），HRBP"唱红脸"（谈方案选择）
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: 绩效评语 ==================== -->
+<section class="section" id="performance">
+  <div class="section-title">
+    <span class="icon" style="background:#f0fff4;color:var(--success)">✎</span>
+    绩效评语指导原则
+  </div>
+  <p class="section-subtitle">绩效评语是仲裁中最关键的证据 —— 一句话可能决定胜败</p>
+
+  <div class="grid-2">
+    <div class="card" style="border-left:4px solid var(--success);">
+      <div class="card-header" style="color:var(--success);">✅ 应该这样做</div>
+      <ul style="font-size:14px;color:var(--gray-600);padding-left:20px;">
+        <li><strong>量化描述：</strong>"截至X月X日，XX项目报告未提交" / "当月XX指标仅完成XX%，低于目标XX%" / "收到客户投诉X次"</li>
+        <li><strong>具体实例：</strong>提供具体行为和事件，让员工明确改进方向</li>
+        <li><strong>公正客观：</strong>基于实际表现，不受个人偏见影响</li>
+        <li><strong>建设性反馈：</strong>指出不足的同时提供改进建议</li>
+        <li><strong>得分与结果匹配：</strong>【符合预期-】→ 3分以下、【低于预期】→ 2分以下、【远低于预期】→ 1分以下</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left:4px solid var(--accent);">
+      <div class="card-header" style="color:var(--accent);">❌ 避免这样做</div>
+      <ul style="font-size:14px;color:var(--gray-600);padding-left:20px;">
+        <li><strong>主观评价：</strong>"员工态度差"、"工作完成情况差" —— 缺乏具体依据，易引发争议</li>
+        <li><strong>模糊描述：</strong>"表现一般"、"有待提升" —— 仲裁中无证明力</li>
+        <li><strong>情绪化表达：</strong>"让人失望"、"不配合工作" —— 可能被认定为恶意评价</li>
+        <li><strong>前后矛盾：</strong>绩效打低分但评语写得好 —— 自毁证据链</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin-top:16px;">
+    <span class="ci">💡</span>
+    <div>
+      <strong>给业务管理者的关键提醒：</strong>请不要因为"不好意思"而在绩效评语中写"该员工整体表现尚可，但仍需努力"—— 这种评语与低分不匹配，在仲裁中会被认为绩效考核不公正，从而导致败诉。评分与评语必须严格对应。
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: 离职话术 ==================== -->
+<section class="section" id="script">
+  <div class="section-title">
+    <span class="icon" style="background:#fff5f5;color:var(--accent)">💬</span>
+    离职沟通话术指引
+  </div>
+  <p class="section-subtitle">业务管理者首次沟通脚本 + HRBP 介入谈判要点</p>
+
+  <div class="grid-2">
+    <!-- 人才盘点离职 -->
+    <div class="card">
+      <div class="card-header"><span class="tag tag-orange">场景一</span> 人才盘点离职（789格子）</div>
+      <div style="font-size:14px;color:var(--gray-600);">
+        <p style="margin-bottom:8px;"><strong>沟通思路：</strong></p>
+        <ol style="padding-left:20px;">
+          <li>先了解员工近期工作情况，建立对话基础</li>
+          <li>告知盘点结果及指标定义，用数据说话</li>
+          <li>暗示公司可能的淘汰动作，给员工心理缓冲</li>
+          <li>引导员工考虑主动规划职业发展</li>
+        </ol>
+        <p style="margin-top:10px;"><strong>员工同意：</strong>业务部门告知 HRBP 发起离职申请</p>
+        <p><strong>员工不同意且要求赔偿：</strong>转交 HRBP 进一步沟通</p>
+      </div>
+    </div>
+
+    <!-- 编制取消离职 -->
+    <div class="card">
+      <div class="card-header"><span class="tag tag-blue">场景二</span> 编制取消离职</div>
+      <div style="font-size:14px;color:var(--gray-600);">
+        <p style="margin-bottom:8px;"><strong>沟通思路：</strong></p>
+        <ol style="padding-left:20px;">
+          <li>以部门业务调整和组织绩效发展为切入点</li>
+          <li>了解员工目前工作饱和度等情况</li>
+          <li>表达公司愿意提供转岗或外部推荐支持</li>
+          <li>引导员工寻找更好的发展机会</li>
+        </ol>
+        <p style="margin-top:10px;"><strong>协商成功：</strong>按 N+1（固定薪资）补偿</p>
+        <p><strong>协商不成：</strong>转交 HRBP 处理，启动制度化流程</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info" style="margin-top:16px;">
+    <span class="ci">🔑</span>
+    <div>
+      <strong>沟通核心原则：</strong><br>
+      ① 始终以"公司发展需要"而非"员工不好"为沟通基调<br>
+      ② 不承诺具体补偿金额，统一口径"按照公司政策执行"<br>
+      ③ 给员工24-48小时冷静期，不要求当场答复<br>
+      ④ 全程至少两人在场（避免后续争议），做好会议记录
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION: FAQ ==================== -->
+<section class="section" id="faq">
+  <div class="section-title">
+    <span class="icon" style="background:#ebf8ff;color:var(--info)">?</span>
+    员工离职常见问题
+  </div>
+
+  <div class="card">
+    <div class="faq-q">Q1: 试用期员工绩效不合格，能否直接让他走？</div>
+    <div class="faq-a">
+      可以，但需要有证据支撑。试用期任意月绩效考核评定为"符合预期-"及以下即可启动优化。关键是要有<strong>量化数据</strong>支撑绩效评分，且员工入职时已签订《试用期考核标准确认书》。如果只是口头说"表现不好"而无书面证据，仲裁风险很高。
+    </div>
+
+    <div class="faq-q">Q2: "给钱就走"是最省事的做法，为什么还要走流程？</div>
+    <div class="faq-a">
+      "给钱就走"虽然短期省事，但长期会形成不良示范效应，其他员工会有样学样，增加谈判成本，"会哭的孩子有奶吃"会迅速蔓延，HRBP将陷入无休止的个案谈判，公司内部公平性荡然无存，需从"救火式给钱"转向"防火式管理"。
+    </div>
+
+    <div class="faq-q">Q3: 员工拒绝在绩效评定上签字怎么办？</div>
+    <div class="faq-a">
+      可通过邮件、飞书等可留存的方式告知绩效结果，保留"已告知"的证据。如果员工不回复，可视为"已知悉"。<strong>不要在无告知的情况下直接发解除通知</strong>，这是案例一败诉的核心原因。
+    </div>
+
+    <div class="faq-q">Q4: 业务部门说"这个人不行"，但拿不出具体证据，HRBP该怎么办？</div>
+    <div class="faq-a">
+      不要急于启动优化流程。先指导业务部门从以下方面补充证据：① 绩效考核中量化不足的指标；② 与员工的飞书/微信沟通记录；③ 客户/同事的投诉记录；④ 工作交付的延期/质量问题记录。<strong>没有证据就启动优化等于主动递刀给对方</strong>。
+    </div>
+
+    <div class="faq-q">Q5: 如何判断应该用"人性化方案"还是"制度化方案"？</div>
+    <div class="faq-a">
+      <strong>人性化方案优先：</strong>适用于员工有一定谈判空间、公司愿意控制成本的场景。优点是速度快、影响面小。<br>
+      <strong>制度化方案兜底：</strong>适用于员工拒绝协商、要求高额赔偿、或需要树立管理权威的场景。前提是证据链完整。<br>
+      建议始终先尝试人性化方案，将其作为制度化方案的"前置程序"记录在案。
+    </div>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<footer class="footer">
+  <p>本指南仅供 HRBP 内部传阅，请勿转发或外泄。内容基于现行劳动法律法规及公司制度制定。</p>
+  <p style="margin-top:4px;">© QoderWork · 最后更新 2026年6月</p>
+</footer>
+
+<script>
+// Accordion toggle
+function toggleAccordion(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Smooth scroll nav highlight
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Scroll spy for nav
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) {
+      current = s.getAttribute('id');
+    }
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+
+<!-- ===== LIGHTBOX OVERLAY ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">&times;</span>
+  <img src="" alt="" id="lightbox-img">
+  <div class="lb-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+function openLightbox(src, caption) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
